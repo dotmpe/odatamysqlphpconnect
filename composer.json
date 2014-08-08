@@ -1,0 +1,19 @@
+{
+    "name": "gizur/odatamysqlphpconnect",
+    "type": "library",
+    "description": "OData Connector for MySQL",
+    "keywords": ["OData","MySQL","PHP"],
+    "homepage": "https://github.com/gizur/odatamysqlphpconnect",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Jonas Colmsjö",
+            "email": "jonas@gizur.com",
+            "homepage": "http://colmsjo.com",
+            "role": "Developer"
+        }
+    ],
+    "require": {
+        "php": "<=5.3.28"
+    }
+}

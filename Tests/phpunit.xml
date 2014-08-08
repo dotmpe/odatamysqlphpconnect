@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- 
+This is sample xml for generating a code coverage report.
+You have to replace all the tests path as per your machine.
+Files are ordered by used component and classes by the test files.
+If we change the order might be the case some files may not find the required classes.
+So do not change the order of the test files from this XML.
+
+To generate code coverage report from this XML file.
+1. Copy this file to PHP5 folder.
+2. Replace all the tests path as per your machine.
+3. Open command prompt and go to PHP5 folder. e.g. C:\PHP5>
+4. Run this command
+    C:\PHP5>phpunit -*-coverage-html C:\Report -*-configuration phpunit.xml
+    (-*-) its two consecutive hyphens.
+5. It will generate report in Given path, here it is C:\Report.
+6. We can access report from index.html file from generated Report folder.
+-->
+<phpunit>
+  <testsuites>
+	<testsuite name="EDMX Generator">
+		<directory>.\Tests\EDMXGenerator</directory>
+		<directory>.\Tests\MySQLConnector</directory> 
+	</testsuite>
+  </testsuites>
+  <filter>
+   <whitelist>
+	<directory suffix=".php">.\EDMXGenerator</directory>
+	<directory suffix=".php">.\ObjectModel</directory>
+	<file>.\Common\ServiceConfig.php</file>
+   </whitelist>
+  </filter>
+</phpunit>

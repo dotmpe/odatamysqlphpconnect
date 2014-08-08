@@ -1,0 +1,182 @@
+<?xml version="1.0" encoding="utf-8"?>
+<xs:schema xmlns:tns="http://schemas.microsoft.com/ado/2006/04/edm" attributeFormDefault="unqualified" elementFormDefault="qualified" targetNamespace="http://schemas.microsoft.com/ado/2006/04/edm" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+  <!--Schema-->
+  <xs:element name="Schema">
+    <xs:complexType>
+      <xs:sequence minOccurs="0" maxOccurs="unbounded">
+        <!-- EntityType -->
+        <xs:element maxOccurs="unbounded" name="EntityType">
+          <xs:complexType>
+            <xs:sequence>
+              <!-- Key -->
+              <xs:element name="Key">
+                <xs:complexType>
+                  <xs:sequence>
+                    <xs:element name="PropertyRef" minOccurs="0">
+                      <xs:complexType>
+                        <xs:attribute name="Name" type="xs:string" use="required" />
+                      </xs:complexType>
+                    </xs:element>
+                  </xs:sequence>
+                </xs:complexType>
+              </xs:element>
+
+              <!-- Property -->
+              <xs:element maxOccurs="unbounded" name="Property">
+                <xs:complexType>
+                  <xs:attribute name="Name" type="xs:string" use="required"/>
+                  <xs:attribute name="Type" type="xs:string" use="required"/>
+                  <xs:attribute name="Nullable" type="xs:string" />
+                  <xs:attribute name="DefaultValue" type="xs:string" />
+                  <xs:attribute name="MaxLength" type="xs:integer" />
+                  <xs:attribute name="FixedLength" type="xs:boolean" />
+                  <xs:attribute name="Precision" type="xs:integer" />
+                  <xs:attribute name="Scale" type="xs:integer" />
+                  <xs:attribute name="Unicode" type="xs:boolean" />
+                  <xs:attribute name="Collation" type="xs:string" />
+                  <xs:attribute name="ConcurrencyMode" type="xs:string"/>
+                </xs:complexType>
+              </xs:element>
+
+              <!-- NavigationProperty -->
+              <xs:element minOccurs="0" maxOccurs="unbounded" name="NavigationProperty" >
+                <xs:complexType>
+                  <xs:attribute name="Name" type="xs:string" use="required"/>
+                  <xs:attribute name="Relationship" type="xs:string" use="required"/>
+                  <xs:attribute name="ToRole" type="xs:string" use="required"/>
+                  <xs:attribute name="FromRole" type="xs:string" use="required"/>
+                </xs:complexType>
+              </xs:element>
+            </xs:sequence>
+            <xs:attribute name="Name" type="xs:string" use="required" />
+            <xs:attribute name="BaseType" type="xs:boolean" />
+            <xs:attribute name="Abstract" type="xs:boolean" />
+            <xs:attribute name="OpenType" type="xs:boolean" />
+          </xs:complexType>
+        </xs:element>
+
+        <!-- Association -->
+        <xs:element minOccurs="0" maxOccurs="unbounded" name="Association" >
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element maxOccurs="unbounded" name="End">
+                <xs:complexType>
+                  <xs:sequence minOccurs="0">
+                    <xs:element name="OnDelete">
+                      <xs:complexType>
+                        <xs:attribute name="Action" type="xs:string" use="required" />
+                      </xs:complexType>
+                    </xs:element>
+                  </xs:sequence>
+                  <xs:attribute name="Role" type="xs:string" use="required" />
+                  <xs:attribute name="Type" type="xs:string" />
+                  <xs:attribute name="Multiplicity" type="xs:string" use="required" />
+                </xs:complexType>
+              </xs:element>
+              <xs:element name="ReferentialConstraint">
+                <xs:complexType>
+                  <xs:sequence>
+                    <xs:element name="Principal">
+                      <xs:complexType>
+                        <xs:sequence>
+                          <xs:element name="PropertyRef">
+                            <xs:complexType>
+                              <xs:attribute name="Name" type="xs:string" use="required" />
+                            </xs:complexType>
+                          </xs:element>
+                        </xs:sequence>
+                        <xs:attribute name="Role" type="xs:string" use="required" />
+                      </xs:complexType>
+                    </xs:element>
+                    <xs:element name="Dependent">
+                      <xs:complexType>
+                        <xs:sequence>
+                          <xs:element name="PropertyRef">
+                            <xs:complexType>
+                              <xs:attribute name="Name" type="xs:string" use="required" />
+                            </xs:complexType>
+                          </xs:element>
+                        </xs:sequence>
+                        <xs:attribute name="Role" type="xs:string" use="required" />
+                      </xs:complexType>
+                    </xs:element>
+                  </xs:sequence>
+                </xs:complexType>
+              </xs:element>
+            </xs:sequence>
+            <xs:attribute name="Name" type="xs:string" use="required" />
+          </xs:complexType>
+        </xs:element>
+
+        <!-- EntityContainer -->
+        <xs:element maxOccurs="unbounded" name="EntityContainer">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element  maxOccurs="unbounded" name="EntitySet">
+                <xs:complexType>
+                  <xs:attribute name="Name" type="xs:string" use="required" />
+                  <xs:attribute name="EntityType" type="xs:string" use="required" />
+                </xs:complexType>
+              </xs:element>
+              <xs:element minOccurs="0" maxOccurs="unbounded" name="AssociationSet">
+                <xs:complexType>
+                  <xs:sequence>
+                    <xs:element maxOccurs="unbounded" name="End">
+                      <xs:complexType>
+                        <xs:attribute name="Role" type="xs:string" />
+                        <xs:attribute name="EntitySet" type="xs:string" use="required" />
+                      </xs:complexType>
+                    </xs:element>
+                  </xs:sequence>
+                  <xs:attribute name="Name" type="xs:string" use="required" />
+                  <xs:attribute name="Association" type="xs:string" use="required" />
+                </xs:complexType>
+              </xs:element>
+            </xs:sequence>
+            <xs:attribute name="Name" type="xs:string" use="required" />
+            <xs:attribute name="Extends" type="xs:string" />
+          </xs:complexType>
+        </xs:element>
+
+        <!-- EntityNameInformation -->
+        <xs:element name="EntityNameInformation">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element maxOccurs="unbounded" name="EntityName">
+                <xs:complexType>
+                  <xs:attribute name="dbName" type="xs:string" use="required" />
+                  <xs:attribute name="EntityTypeName" type="xs:string" use="required" />
+                  <xs:attribute name="EntitySetName" type="xs:string" use="required" />
+                </xs:complexType>
+              </xs:element>
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+
+        <!-- MappingDetails -->
+        <xs:element name="MappingDetails">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element maxOccurs="unbounded" name="MapEntity">
+                <xs:complexType>
+                  <xs:sequence>
+                    <xs:element maxOccurs="unbounded" name="MapProperty">
+                      <xs:complexType>
+                        <xs:attribute name="UserEntityName" type="xs:string" use="required" />
+                        <xs:attribute name="UserPropertyName" type="xs:string" use="required" />
+                        <xs:attribute name="DBPropertyName" type="xs:string" use="required" />
+                      </xs:complexType>
+                    </xs:element>
+                  </xs:sequence>
+                  <xs:attribute name="UserEntityName" type="xs:string" use="required" />
+                  <xs:attribute name="DBEntityName" type="xs:string" use="required" />
+                </xs:complexType>
+              </xs:element>
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+      </xs:sequence>
+      <xs:attribute name="Namespace" type="xs:string" use="required" />
+    </xs:complexType>
+  </xs:element>
+</xs:schema>

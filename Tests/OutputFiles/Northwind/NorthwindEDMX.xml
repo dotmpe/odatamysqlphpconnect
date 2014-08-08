@@ -1,0 +1,383 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<edmx:Edmx Version="1.0" xmlns:edmx="http://schemas.microsoft.com/ado/2007/06/edmx">
+ <edmx:DataServices>
+  <Schema Namespace="Northwind" xmlns:d="http://schemas.microsoft.com/ado/2007/08/dataservices" xmlns:m="http://schemas.microsoft.com/ado/2007/08/dataservices/metadata" xmlns="http://schemas.microsoft.com/ado/2006/04/edm">
+   <EntityType Name="category">
+    <Key>
+     <PropertyRef Name="CategoryID"/>
+    </Key>
+    <Property Name="CategoryID" Type="Edm.Boolean" Nullable="false" Precision="10"/>
+    <Property Name="CategoryName" Type="Edm.String" Nullable="false" MaxLength="15" Precision="10"/>
+    <Property Name="Description" Type="Edm.String" Nullable="false" Precision="10"/>
+    <Property Name="Picture" Type="Edm.String" Nullable="false" MaxLength="50" Precision="10"/>
+    <NavigationProperty Name="products" Relationship="FK_products_categoryid" FromRole="category" ToRole="products"/>
+   </EntityType>
+   <EntityType Name="customers">
+    <Key>
+     <PropertyRef Name="CustomerID"/>
+    </Key>
+    <Property Name="CustomerID" Type="Edm.String" Nullable="false" MaxLength="5" Precision="10"/>
+    <Property Name="CompanyName" Type="Edm.String" Nullable="false" MaxLength="40" Precision="10"/>
+    <Property Name="ContactName" Type="Edm.String" Nullable="false" MaxLength="30" Precision="10" DefaultValue="Unknown"/>
+    <Property Name="ContactTitle" Type="Edm.String" Nullable="false" MaxLength="30" Precision="10"/>
+    <Property Name="Address" Type="Edm.String" Nullable="false" MaxLength="60" Precision="10"/>
+    <Property Name="City" Type="Edm.String" Nullable="false" MaxLength="15" Precision="10"/>
+    <Property Name="Region" Type="Edm.String" Nullable="false" MaxLength="15" Precision="10"/>
+    <Property Name="PostalCode" Type="Edm.String" Nullable="false" MaxLength="10" Precision="10"/>
+    <Property Name="Country" Type="Edm.String" Nullable="false" MaxLength="15" Precision="10"/>
+    <Property Name="Phone" Type="Edm.String" Nullable="false" MaxLength="24" Precision="10"/>
+    <Property Name="Fax" Type="Edm.String" Nullable="false" MaxLength="24" Precision="10"/>
+    <NavigationProperty Name="orders" Relationship="FK_orders_customer_id" FromRole="customer" ToRole="orders"/>
+   </EntityType>
+   <EntityType Name="employee">
+    <Key>
+     <PropertyRef Name="EmployeeID"/>
+    </Key>
+    <Property Name="EmployeeID" Type="Edm.Int32" Nullable="false" Precision="10"/>
+    <Property Name="LastName" Type="Edm.String" Nullable="false" MaxLength="20" Precision="10"/>
+    <Property Name="FirstName" Type="Edm.String" Nullable="false" MaxLength="10" Precision="10"/>
+    <Property Name="Title" Type="Edm.String" Nullable="false" MaxLength="30" Precision="10"/>
+    <Property Name="TitleOfCourtesy" Type="Edm.String" Nullable="false" MaxLength="25" Precision="10"/>
+    <Property Name="BirthDate" Type="Edm.DateTime" Nullable="false" Precision="10"/>
+    <Property Name="HireDate" Type="Edm.DateTime" Nullable="false" Precision="10"/>
+    <Property Name="Address" Type="Edm.String" Nullable="false" MaxLength="60" Precision="10"/>
+    <Property Name="City" Type="Edm.String" Nullable="false" MaxLength="15" Precision="10"/>
+    <Property Name="Region" Type="Edm.String" Nullable="false" MaxLength="15" Precision="10"/>
+    <Property Name="PostalCode" Type="Edm.String" Nullable="false" MaxLength="10" Precision="10"/>
+    <Property Name="Country" Type="Edm.String" Nullable="false" MaxLength="15" Precision="10"/>
+    <Property Name="HomePhone" Type="Edm.String" Nullable="false" MaxLength="24" Precision="10"/>
+    <Property Name="Extension" Type="Edm.String" Nullable="false" MaxLength="4" Precision="10"/>
+    <Property Name="Photo" Type="Edm.String" Nullable="false" MaxLength="50" Precision="10"/>
+    <Property Name="Notes" Type="Edm.String" Nullable="true" Precision="10"/>
+    <Property Name="ReportsTo" Type="Edm.Int32" Nullable="true" Precision="10"/>
+    <NavigationProperty Name="employees1" Relationship="FK_employees_reports_to" FromRole="employees" ToRole="employees1"/>
+    <NavigationProperty Name="employee1" Relationship="FK_employees_reports_to" FromRole="employees1" ToRole="employees"/>
+    <NavigationProperty Name="orders" Relationship="FK_orders_employeeid" FromRole="employee" ToRole="orders"/>
+   </EntityType>
+   <EntityType Name="order_detail">
+    <Key>
+     <PropertyRef Name="ID"/>
+    </Key>
+    <Property Name="ID" Type="Edm.Int32" Nullable="false" Precision="10"/>
+    <Property Name="OrderID" Type="Edm.Int32" Nullable="false" Precision="10"/>
+    <Property Name="ProductID" Type="Edm.Int32" Nullable="false" Precision="10"/>
+    <Property Name="UnitPrice" Type="Edm.Double" Nullable="false" Precision="10"/>
+    <Property Name="Quantity" Type="Edm.Int16" Nullable="false" Precision="10" DefaultValue="1"/>
+    <Property Name="Discount" Type="Edm.Double" Nullable="false" Precision="10"/>
+    <NavigationProperty Name="orders" Relationship="FK_order_details_orderid" FromRole="order_details" ToRole="order"/>
+    <NavigationProperty Name="products" Relationship="FK_order_details_productid" FromRole="order_details" ToRole="product"/>
+   </EntityType>
+   <EntityType Name="order">
+    <Key>
+     <PropertyRef Name="OrderID"/>
+    </Key>
+    <Property Name="OrderID" Type="Edm.Int32" Nullable="false" Precision="10"/>
+    <Property Name="CustomerID" Type="Edm.String" Nullable="false" MaxLength="5" Precision="10"/>
+    <Property Name="EmployeeID" Type="Edm.Int32" Nullable="false" Precision="10"/>
+    <Property Name="OrderDate" Type="Edm.DateTime" Nullable="false" Precision="10"/>
+    <Property Name="RequiredDate" Type="Edm.DateTime" Nullable="true" Precision="10"/>
+    <Property Name="ShippedDate" Type="Edm.DateTime" Nullable="true" Precision="10"/>
+    <Property Name="ShipVia" Type="Edm.Int32" Nullable="false" Precision="10"/>
+    <Property Name="Freight" Type="Edm.Double" Nullable="false" Precision="10"/>
+    <Property Name="ShipName" Type="Edm.String" Nullable="false" MaxLength="40" Precision="10"/>
+    <Property Name="ShipAddress" Type="Edm.String" Nullable="false" MaxLength="60" Precision="10"/>
+    <Property Name="ShipCity" Type="Edm.String" Nullable="false" MaxLength="15" Precision="10"/>
+    <Property Name="ShipRegion" Type="Edm.String" Nullable="false" MaxLength="15" Precision="10"/>
+    <Property Name="ShipPostalCode" Type="Edm.String" Nullable="false" MaxLength="10" Precision="10"/>
+    <Property Name="ShipCountry" Type="Edm.String" Nullable="false" MaxLength="15" Precision="10"/>
+    <NavigationProperty Name="customers" Relationship="FK_orders_customer_id" FromRole="orders" ToRole="customer"/>
+    <NavigationProperty Name="employees" Relationship="FK_orders_employeeid" FromRole="orders" ToRole="employee"/>
+    <NavigationProperty Name="shippers" Relationship="FK_orders_shipvia" FromRole="orders" ToRole="shipper"/>
+    <NavigationProperty Name="order_details" Relationship="FK_order_details_orderid" FromRole="order" ToRole="order_details"/>
+   </EntityType>
+   <EntityType Name="product">
+    <Key>
+     <PropertyRef Name="ProductID"/>
+    </Key>
+    <Property Name="ProductID" Type="Edm.Int32" Nullable="false" Precision="10"/>
+    <Property Name="ProductName" Type="Edm.String" Nullable="false" MaxLength="40" Precision="10"/>
+    <Property Name="SupplierID" Type="Edm.Int32" Nullable="false" Precision="10"/>
+    <Property Name="CategoryID" Type="Edm.Boolean" Nullable="false" Precision="10"/>
+    <Property Name="QuantityPerUnit" Type="Edm.String" Nullable="false" MaxLength="20" Precision="10"/>
+    <Property Name="UnitPrice" Type="Edm.Double" Nullable="false" Precision="10"/>
+    <Property Name="UnitsInStock" Type="Edm.Int16" Nullable="false" Precision="10"/>
+    <Property Name="UnitsOnOrder" Type="Edm.Int16" Nullable="false" Precision="10"/>
+    <Property Name="ReorderLevel" Type="Edm.Int16" Nullable="false" Precision="10"/>
+    <Property Name="Discontinued" Type="Edm.String" Nullable="false" Precision="10"/>
+    <NavigationProperty Name="categories" Relationship="FK_products_categoryid" FromRole="products" ToRole="category"/>
+    <NavigationProperty Name="suppliers" Relationship="FK_products_supplierid" FromRole="products" ToRole="supplier"/>
+    <NavigationProperty Name="order_details" Relationship="FK_order_details_productid" FromRole="product" ToRole="order_details"/>
+   </EntityType>
+   <EntityType Name="shipper">
+    <Key>
+     <PropertyRef Name="ShipperID"/>
+    </Key>
+    <Property Name="ShipperID" Type="Edm.Int32" Nullable="false" Precision="10"/>
+    <Property Name="CompanyName" Type="Edm.String" Nullable="false" MaxLength="40" Precision="10"/>
+    <Property Name="Phone" Type="Edm.String" Nullable="false" MaxLength="24" Precision="10"/>
+    <NavigationProperty Name="orders" Relationship="FK_orders_shipvia" FromRole="shipper" ToRole="orders"/>
+   </EntityType>
+   <EntityType Name="supplier">
+    <Key>
+     <PropertyRef Name="SupplierID"/>
+    </Key>
+    <Property Name="SupplierID" Type="Edm.Int32" Nullable="false" Precision="10"/>
+    <Property Name="CompanyName" Type="Edm.String" Nullable="false" MaxLength="40" Precision="10"/>
+    <Property Name="ContactName" Type="Edm.String" Nullable="false" MaxLength="30" Precision="10"/>
+    <Property Name="ContactTitle" Type="Edm.String" Nullable="false" MaxLength="30" Precision="10"/>
+    <Property Name="Address" Type="Edm.String" Nullable="false" MaxLength="60" Precision="10"/>
+    <Property Name="City" Type="Edm.String" Nullable="false" MaxLength="15" Precision="10"/>
+    <Property Name="Region" Type="Edm.String" Nullable="false" MaxLength="15" Precision="10"/>
+    <Property Name="PostalCode" Type="Edm.String" Nullable="false" MaxLength="10" Precision="10"/>
+    <Property Name="Country" Type="Edm.String" Nullable="false" MaxLength="15" Precision="10"/>
+    <Property Name="Phone" Type="Edm.String" Nullable="false" MaxLength="24" Precision="10"/>
+    <Property Name="Fax" Type="Edm.String" Nullable="false" MaxLength="24" Precision="10"/>
+    <Property Name="HomePage" Type="Edm.String" Nullable="false" MaxLength="255" Precision="10"/>
+    <NavigationProperty Name="products" Relationship="FK_products_supplierid" FromRole="supplier" ToRole="products"/>
+   </EntityType>
+   <Association Name="FK_employees_reports_to">
+    <End Role="employee" Type="Northwind.employee" Multiplicity="1"/>
+    <End Role="employees" Type="Northwind.employee" Multiplicity="*"/>
+    <ReferentialConstraint>
+     <Principal Role="employee">
+      <PropertyRef Name="EmployeeID"/>
+     </Principal>
+     <Dependent Role="employees">
+      <PropertyRef Name="ReportsTo"/>
+     </Dependent>
+    </ReferentialConstraint>
+   </Association>
+   <Association Name="FK_order_details_orderid">
+    <End Role="order" Type="Northwind.order" Multiplicity="1"/>
+    <End Role="order_details" Type="Northwind.order_detail" Multiplicity="*"/>
+    <ReferentialConstraint>
+     <Principal Role="order">
+      <PropertyRef Name="OrderID"/>
+     </Principal>
+     <Dependent Role="order_details">
+      <PropertyRef Name="OrderID"/>
+     </Dependent>
+    </ReferentialConstraint>
+   </Association>
+   <Association Name="FK_order_details_productid">
+    <End Role="product" Type="Northwind.product" Multiplicity="1"/>
+    <End Role="order_details" Type="Northwind.order_detail" Multiplicity="*"/>
+    <ReferentialConstraint>
+     <Principal Role="product">
+      <PropertyRef Name="ProductID"/>
+     </Principal>
+     <Dependent Role="order_details">
+      <PropertyRef Name="ProductID"/>
+     </Dependent>
+    </ReferentialConstraint>
+   </Association>
+   <Association Name="FK_orders_customer_id">
+    <End Role="customer" Type="Northwind.customer" Multiplicity="1"/>
+    <End Role="orders" Type="Northwind.order" Multiplicity="*"/>
+    <ReferentialConstraint>
+     <Principal Role="customer">
+      <PropertyRef Name="CustomerID"/>
+     </Principal>
+     <Dependent Role="orders">
+      <PropertyRef Name="CustomerID"/>
+     </Dependent>
+    </ReferentialConstraint>
+   </Association>
+   <Association Name="FK_orders_employeeid">
+    <End Role="employee" Type="Northwind.employee" Multiplicity="1"/>
+    <End Role="orders" Type="Northwind.order" Multiplicity="*"/>
+    <ReferentialConstraint>
+     <Principal Role="employee">
+      <PropertyRef Name="EmployeeID"/>
+     </Principal>
+     <Dependent Role="orders">
+      <PropertyRef Name="EmployeeID"/>
+     </Dependent>
+    </ReferentialConstraint>
+   </Association>
+   <Association Name="FK_orders_shipvia">
+    <End Role="shipper" Type="Northwind.shipper" Multiplicity="1"/>
+    <End Role="orders" Type="Northwind.order" Multiplicity="*"/>
+    <ReferentialConstraint>
+     <Principal Role="shipper">
+      <PropertyRef Name="ShipperID"/>
+     </Principal>
+     <Dependent Role="orders">
+      <PropertyRef Name="ShipVia"/>
+     </Dependent>
+    </ReferentialConstraint>
+   </Association>
+   <Association Name="FK_products_categoryid">
+    <End Role="category" Type="Northwind.category" Multiplicity="1"/>
+    <End Role="products" Type="Northwind.product" Multiplicity="*"/>
+    <ReferentialConstraint>
+     <Principal Role="category">
+      <PropertyRef Name="CategoryID"/>
+     </Principal>
+     <Dependent Role="products">
+      <PropertyRef Name="CategoryID"/>
+     </Dependent>
+    </ReferentialConstraint>
+   </Association>
+   <Association Name="FK_products_supplierid">
+    <End Role="supplier" Type="Northwind.supplier" Multiplicity="1"/>
+    <End Role="products" Type="Northwind.product" Multiplicity="*"/>
+    <ReferentialConstraint>
+     <Principal Role="supplier">
+      <PropertyRef Name="SupplierID"/>
+     </Principal>
+     <Dependent Role="products">
+      <PropertyRef Name="SupplierID"/>
+     </Dependent>
+    </ReferentialConstraint>
+   </Association>
+   <EntityContainer Name="NorthwindEntities">
+    <EntitySet Name="categories" EntityType="Northwind.category"/>
+    <EntitySet Name="customers" EntityType="Northwind.customer"/>
+    <EntitySet Name="employees" EntityType="Northwind.employee"/>
+    <EntitySet Name="order_details" EntityType="Northwind.order_detail"/>
+    <EntitySet Name="orders" EntityType="Northwind.order"/>
+    <EntitySet Name="products" EntityType="Northwind.product"/>
+    <EntitySet Name="shippers" EntityType="Northwind.shipper"/>
+    <EntitySet Name="suppliers" EntityType="Northwind.supplier"/>
+    <AssociationSet Name="FK_employees_reports_to" Association="Northwind.FK_employees_reports_to">
+     <End Role="employee" EntitySet="employees"/>
+     <End Role="employees" EntitySet="employees"/>
+    </AssociationSet>
+    <AssociationSet Name="FK_order_details_orderid" Association="Northwind.FK_order_details_orderid">
+     <End Role="order" EntitySet="orders"/>
+     <End Role="order_details" EntitySet="order_details"/>
+    </AssociationSet>
+    <AssociationSet Name="FK_order_details_productid" Association="Northwind.FK_order_details_productid">
+     <End Role="product" EntitySet="products"/>
+     <End Role="order_details" EntitySet="order_details"/>
+    </AssociationSet>
+    <AssociationSet Name="FK_orders_customer_id" Association="Northwind.FK_orders_customer_id">
+     <End Role="customer" EntitySet="customers"/>
+     <End Role="orders" EntitySet="orders"/>
+    </AssociationSet>
+    <AssociationSet Name="FK_orders_employeeid" Association="Northwind.FK_orders_employeeid">
+     <End Role="employee" EntitySet="employees"/>
+     <End Role="orders" EntitySet="orders"/>
+    </AssociationSet>
+    <AssociationSet Name="FK_orders_shipvia" Association="Northwind.FK_orders_shipvia">
+     <End Role="shipper" EntitySet="shippers"/>
+     <End Role="orders" EntitySet="orders"/>
+    </AssociationSet>
+    <AssociationSet Name="FK_products_categoryid" Association="Northwind.FK_products_categoryid">
+     <End Role="category" EntitySet="categories"/>
+     <End Role="products" EntitySet="products"/>
+    </AssociationSet>
+    <AssociationSet Name="FK_products_supplierid" Association="Northwind.FK_products_supplierid">
+     <End Role="supplier" EntitySet="suppliers"/>
+     <End Role="products" EntitySet="products"/>
+    </AssociationSet>
+   </EntityContainer>
+   <EntityNameInformation>
+    <EntityName dbName="categories" EntityTypeName="category" EntitySetName="categories"/>
+    <EntityName dbName="customers" EntityTypeName="customer" EntitySetName="customers"/>
+    <EntityName dbName="employees" EntityTypeName="employee" EntitySetName="employees"/>
+    <EntityName dbName="order_details" EntityTypeName="order_detail" EntitySetName="order_details"/>
+    <EntityName dbName="orders" EntityTypeName="order" EntitySetName="orders"/>
+    <EntityName dbName="products" EntityTypeName="product" EntitySetName="products"/>
+    <EntityName dbName="shippers" EntityTypeName="shipper" EntitySetName="shippers"/>
+    <EntityName dbName="suppliers" EntityTypeName="supplier" EntitySetName="suppliers"/>
+   </EntityNameInformation>
+   <MappingDetails>
+    <MapEntity UserEntityName="categories" DBEntityName="categories">
+     <MapProperty UserEntityName="categories" UserPropertyName="CategoryID" DBPropertyName="CategoryID"/>
+     <MapProperty UserEntityName="categories" UserPropertyName="CategoryName" DBPropertyName="CategoryName"/>
+     <MapProperty UserEntityName="categories" UserPropertyName="Description" DBPropertyName="Description"/>
+     <MapProperty UserEntityName="categories" UserPropertyName="Picture" DBPropertyName="Picture"/>
+    </MapEntity>
+    <MapEntity UserEntityName="customers" DBEntityName="customers">
+     <MapProperty UserEntityName="customers" UserPropertyName="CustomerID" DBPropertyName="CustomerID"/>
+     <MapProperty UserEntityName="customers" UserPropertyName="CompanyName" DBPropertyName="CompanyName"/>
+     <MapProperty UserEntityName="customers" UserPropertyName="ContactName" DBPropertyName="ContactName"/>
+     <MapProperty UserEntityName="customers" UserPropertyName="ContactTitle" DBPropertyName="ContactTitle"/>
+     <MapProperty UserEntityName="customers" UserPropertyName="Address" DBPropertyName="Address"/>
+     <MapProperty UserEntityName="customers" UserPropertyName="City" DBPropertyName="City"/>
+     <MapProperty UserEntityName="customers" UserPropertyName="Region" DBPropertyName="Region"/>
+     <MapProperty UserEntityName="customers" UserPropertyName="PostalCode" DBPropertyName="PostalCode"/>
+     <MapProperty UserEntityName="customers" UserPropertyName="Country" DBPropertyName="Country"/>
+     <MapProperty UserEntityName="customers" UserPropertyName="Phone" DBPropertyName="Phone"/>
+     <MapProperty UserEntityName="customers" UserPropertyName="Fax" DBPropertyName="Fax"/>
+    </MapEntity>
+    <MapEntity UserEntityName="employees" DBEntityName="employees">
+     <MapProperty UserEntityName="employees" UserPropertyName="EmployeeID" DBPropertyName="EmployeeID"/>
+     <MapProperty UserEntityName="employees" UserPropertyName="LastName" DBPropertyName="LastName"/>
+     <MapProperty UserEntityName="employees" UserPropertyName="FirstName" DBPropertyName="FirstName"/>
+     <MapProperty UserEntityName="employees" UserPropertyName="Title" DBPropertyName="Title"/>
+     <MapProperty UserEntityName="employees" UserPropertyName="TitleOfCourtesy" DBPropertyName="TitleOfCourtesy"/>
+     <MapProperty UserEntityName="employees" UserPropertyName="BirthDate" DBPropertyName="BirthDate"/>
+     <MapProperty UserEntityName="employees" UserPropertyName="HireDate" DBPropertyName="HireDate"/>
+     <MapProperty UserEntityName="employees" UserPropertyName="Address" DBPropertyName="Address"/>
+     <MapProperty UserEntityName="employees" UserPropertyName="City" DBPropertyName="City"/>
+     <MapProperty UserEntityName="employees" UserPropertyName="Region" DBPropertyName="Region"/>
+     <MapProperty UserEntityName="employees" UserPropertyName="PostalCode" DBPropertyName="PostalCode"/>
+     <MapProperty UserEntityName="employees" UserPropertyName="Country" DBPropertyName="Country"/>
+     <MapProperty UserEntityName="employees" UserPropertyName="HomePhone" DBPropertyName="HomePhone"/>
+     <MapProperty UserEntityName="employees" UserPropertyName="Extension" DBPropertyName="Extension"/>
+     <MapProperty UserEntityName="employees" UserPropertyName="Photo" DBPropertyName="Photo"/>
+     <MapProperty UserEntityName="employees" UserPropertyName="Notes" DBPropertyName="Notes"/>
+     <MapProperty UserEntityName="employees" UserPropertyName="ReportsTo" DBPropertyName="ReportsTo"/>
+    </MapEntity>
+    <MapEntity UserEntityName="order_details" DBEntityName="order_details">
+     <MapProperty UserEntityName="order_details" UserPropertyName="ID" DBPropertyName="ID"/>
+     <MapProperty UserEntityName="order_details" UserPropertyName="OrderID" DBPropertyName="OrderID"/>
+     <MapProperty UserEntityName="order_details" UserPropertyName="ProductID" DBPropertyName="ProductID"/>
+     <MapProperty UserEntityName="order_details" UserPropertyName="UnitPrice" DBPropertyName="UnitPrice"/>
+     <MapProperty UserEntityName="order_details" UserPropertyName="Quantity" DBPropertyName="Quantity"/>
+     <MapProperty UserEntityName="order_details" UserPropertyName="Discount" DBPropertyName="Discount"/>
+    </MapEntity>
+    <MapEntity UserEntityName="orders" DBEntityName="orders">
+     <MapProperty UserEntityName="orders" UserPropertyName="OrderID" DBPropertyName="OrderID"/>
+     <MapProperty UserEntityName="orders" UserPropertyName="CustomerID" DBPropertyName="CustomerID"/>
+     <MapProperty UserEntityName="orders" UserPropertyName="EmployeeID" DBPropertyName="EmployeeID"/>
+     <MapProperty UserEntityName="orders" UserPropertyName="OrderDate" DBPropertyName="OrderDate"/>
+     <MapProperty UserEntityName="orders" UserPropertyName="RequiredDate" DBPropertyName="RequiredDate"/>
+     <MapProperty UserEntityName="orders" UserPropertyName="ShippedDate" DBPropertyName="ShippedDate"/>
+     <MapProperty UserEntityName="orders" UserPropertyName="ShipVia" DBPropertyName="ShipVia"/>
+     <MapProperty UserEntityName="orders" UserPropertyName="Freight" DBPropertyName="Freight"/>
+     <MapProperty UserEntityName="orders" UserPropertyName="ShipName" DBPropertyName="ShipName"/>
+     <MapProperty UserEntityName="orders" UserPropertyName="ShipAddress" DBPropertyName="ShipAddress"/>
+     <MapProperty UserEntityName="orders" UserPropertyName="ShipCity" DBPropertyName="ShipCity"/>
+     <MapProperty UserEntityName="orders" UserPropertyName="ShipRegion" DBPropertyName="ShipRegion"/>
+     <MapProperty UserEntityName="orders" UserPropertyName="ShipPostalCode" DBPropertyName="ShipPostalCode"/>
+     <MapProperty UserEntityName="orders" UserPropertyName="ShipCountry" DBPropertyName="ShipCountry"/>
+    </MapEntity>
+    <MapEntity UserEntityName="products" DBEntityName="products">
+     <MapProperty UserEntityName="products" UserPropertyName="ProductID" DBPropertyName="ProductID"/>
+     <MapProperty UserEntityName="products" UserPropertyName="ProductName" DBPropertyName="ProductName"/>
+     <MapProperty UserEntityName="products" UserPropertyName="SupplierID" DBPropertyName="SupplierID"/>
+     <MapProperty UserEntityName="products" UserPropertyName="CategoryID" DBPropertyName="CategoryID"/>
+     <MapProperty UserEntityName="products" UserPropertyName="QuantityPerUnit" DBPropertyName="QuantityPerUnit"/>
+     <MapProperty UserEntityName="products" UserPropertyName="UnitPrice" DBPropertyName="UnitPrice"/>
+     <MapProperty UserEntityName="products" UserPropertyName="UnitsInStock" DBPropertyName="UnitsInStock"/>
+     <MapProperty UserEntityName="products" UserPropertyName="UnitsOnOrder" DBPropertyName="UnitsOnOrder"/>
+     <MapProperty UserEntityName="products" UserPropertyName="ReorderLevel" DBPropertyName="ReorderLevel"/>
+     <MapProperty UserEntityName="products" UserPropertyName="Discontinued" DBPropertyName="Discontinued"/>
+    </MapEntity>
+    <MapEntity UserEntityName="shippers" DBEntityName="shippers">
+     <MapProperty UserEntityName="shippers" UserPropertyName="ShipperID" DBPropertyName="ShipperID"/>
+     <MapProperty UserEntityName="shippers" UserPropertyName="CompanyName" DBPropertyName="CompanyName"/>
+     <MapProperty UserEntityName="shippers" UserPropertyName="Phone" DBPropertyName="Phone"/>
+    </MapEntity>
+    <MapEntity UserEntityName="suppliers" DBEntityName="suppliers">
+     <MapProperty UserEntityName="suppliers" UserPropertyName="SupplierID" DBPropertyName="SupplierID"/>
+     <MapProperty UserEntityName="suppliers" UserPropertyName="CompanyName" DBPropertyName="CompanyName"/>
+     <MapProperty UserEntityName="suppliers" UserPropertyName="ContactName" DBPropertyName="ContactName"/>
+     <MapProperty UserEntityName="suppliers" UserPropertyName="ContactTitle" DBPropertyName="ContactTitle"/>
+     <MapProperty UserEntityName="suppliers" UserPropertyName="Address" DBPropertyName="Address"/>
+     <MapProperty UserEntityName="suppliers" UserPropertyName="City" DBPropertyName="City"/>
+     <MapProperty UserEntityName="suppliers" UserPropertyName="Region" DBPropertyName="Region"/>
+     <MapProperty UserEntityName="suppliers" UserPropertyName="PostalCode" DBPropertyName="PostalCode"/>
+     <MapProperty UserEntityName="suppliers" UserPropertyName="Country" DBPropertyName="Country"/>
+     <MapProperty UserEntityName="suppliers" UserPropertyName="Phone" DBPropertyName="Phone"/>
+     <MapProperty UserEntityName="suppliers" UserPropertyName="Fax" DBPropertyName="Fax"/>
+     <MapProperty UserEntityName="suppliers" UserPropertyName="HomePage" DBPropertyName="HomePage"/>
+    </MapEntity>
+   </MappingDetails>
+  </Schema>
+ </edmx:DataServices>
+</edmx:Edmx>

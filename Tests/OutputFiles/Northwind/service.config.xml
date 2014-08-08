@@ -1,0 +1,10 @@
+<?xml version="1.0"?>
+<configuration>
+ <services>
+  <Service Name="Northwind.svc">
+   <path>Services\Northwind\NorthwindDataService.php</path>
+   <classname>NorthwindDataService</classname>
+   <baseURL>/Northwind.svc</baseURL>
+  </Service>
+ </services>
+</configuration>

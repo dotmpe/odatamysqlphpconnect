@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<configuration>
+    <rules>
+        <!-- this flag is used for processing many to many relationship if exists-->
+        <viewManyToManyRelationship>true</viewManyToManyRelationship>
+        <!-- defines the query provider version -->
+        <queryProviderVersion>2</queryProviderVersion>
+        <!-- Accessible entity set names(* means all) for defined page size-->
+        <nameEntitySetPageSize>*</nameEntitySetPageSize>
+        <!-- Page size of the responce -->
+        <pageSizeEntitySetPageSize>10</pageSizeEntitySetPageSize>
+        <!-- Accessible entity set names(* means all) for defined access rule -->
+        <nameEntitySetAccessRule>*</nameEntitySetAccessRule>
+        <!-- Access rule for requested Data -->
+        <rightsEntitySetAccessRule>ALL</rightsEntitySetAccessRule>
+        <!-- flag for accept count request -->
+        <acceptCountRequest>true</acceptCountRequest>
+        <!-- flag for accept projection request -->
+        <acceptProjectionRequest>true</acceptProjectionRequest>
+        <!-- Maximum Data service version supported -->
+        <maxDataServiceVersion>V3</maxDataServiceVersion>
+        <!-- maximum expand count per request -->
+        <maxExpandCount>null</maxExpandCount>
+        <!-- maximum expand depth per request -->
+        <maxExpandDepth>null</maxExpandDepth>
+        <!-- maximum results per collection -->
+        <maxResultsPerCollection>null</maxResultsPerCollection>
+        <!-- used for get verbose errors -->
+        <useVerboseErrors>null</useVerboseErrors>
+    </rules>
+</configuration>
