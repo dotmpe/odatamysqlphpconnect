@@ -11,6 +11,8 @@ run on Linux, Windows, or Mac OS environments.
 
 How to use the OData Connector for MySQL
 
+Step 0. Instal composer if you don't have it: `curl -sS https://getcomposer.org/installer | php`
+
 Step 1: download install the OData Producer library for PHP (For detailed instructions on 
 installing and using the OData Producer, see the installation steps in Anu Chandy's blog 
 post on the OData PHP Producer.)
