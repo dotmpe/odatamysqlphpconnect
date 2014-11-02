@@ -14,7 +14,6 @@
         }
     ],
     "require": {
-        "php": "<=5.3.28",
         "doctrine/dbal": "~2.4"
     }
 }
