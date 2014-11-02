@@ -16,6 +16,9 @@
  * @link      
  *
  */
+
+require 'vendor/autoload.php';
+
 require_once 'ODataConnectorForMySQL/Common/ClassAutoLoader.php';
 use Doctrine\DBAL\Configuration;
 use ODataConnectorForMySQL\EDMXGenerator\IEDMXGenerator;
