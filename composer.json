@@ -1,18 +1,10 @@
 {
-    "name": "gizur/odatamysqlphpconnect",
+    "name": "dotmpe/odatamysqlphpconnect",
     "type": "library",
     "description": "OData Connector for MySQL",
     "keywords": ["OData","MySQL","PHP"],
-    "homepage": "https://github.com/gizur/odatamysqlphpconnect",
-    "license": "MIT",
-    "authors": [
-        {
-            "name": "Jonas Colmsjö",
-            "email": "jonas@gizur.com",
-            "homepage": "http://colmsjo.com",
-            "role": "Developer"
-        }
-    ],
+    "homepage": "https://github.com/dotmpe/odatamysqlphpconnect",
+    "license": "New BSD",
     "require": {
         "doctrine/dbal": "~2.4"
     }
