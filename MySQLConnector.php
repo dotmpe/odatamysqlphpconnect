@@ -16,9 +16,6 @@
  * @link      
  *
  */
-
-require 'vendor/autoload.php';
-
 require_once 'ODataConnectorForMySQL/Common/ClassAutoLoader.php';
 use Doctrine\DBAL\Configuration;
 use ODataConnectorForMySQL\EDMXGenerator\IEDMXGenerator;
@@ -379,16 +376,16 @@ class MySQLConnector
                 die("$edmxPath is invalid.\n");
             }*/
             $this->generateMetadataProvider(
-                &$serviceInfo, $serviceOutDir, $serviceXslDir, $edmxPath
+                $serviceInfo, $serviceOutDir, $serviceXslDir, $edmxPath
             );
             $this->generateQueryProvider(
-                &$serviceInfo, $serviceOutDir, $serviceXslDir, $edmxPath, $stage
+                $serviceInfo, $serviceOutDir, $serviceXslDir, $edmxPath, $stage
             );
             $this->generateServiceProvider(
-                &$serviceInfo, $serviceOutDir, $serviceXslDir, $configFile
+                $serviceInfo, $serviceOutDir, $serviceXslDir, $configFile
             );
             $this->generateExpressionProvider(
-                &$serviceInfo, $serviceOutDir, $serviceXslDir, $configFile
+                $serviceInfo, $serviceOutDir, $serviceXslDir, $configFile
             );
             $this->generateServiceConfig(
                 $serviceOutDir, $this->options['serviceName']
